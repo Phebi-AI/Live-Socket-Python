@@ -26,7 +26,7 @@ speaker = "speaker1"
 
 # Create a new websocket connection to the Phebi-Live WebSocket endpoint.
 ws = websocket.WebSocketApp(
-    "ws://konstantin.phebi.ai/sockets/live/" + project + "/" + session + "/" + speaker,
+    "ws://dev.phebi.ai/sockets/live/" + project + "/" + session + "/" + speaker,
     on_open=on_open,
     on_message=on_message,
     on_error=on_error,
