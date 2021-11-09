@@ -13,12 +13,21 @@ The url to the Phebi-Live socket consists of
 * The speaker (respondent, moderator etc.)
 
 
+## 2. Prerequisites
 
-## 2. Establish a socket connection
+We will use the websocket python package to connect to the Phebi-Live WebSocket
+
+```
+pip3 install websocket-client
+```
+
+## 3. Establish a socket connection
 
 To establish a connection to the Phebi-Live WebSocket you have to provide the subscription key 'Subscription' in the request headers.
 
 ```
+import websocket
+
 subscription_key = "b97076b5-faf4-4c66-8123-1deb12db9817"
 project = "Test_Project"
 session = "python"
@@ -35,7 +44,7 @@ ws = websocket.WebSocketApp(
 )
 ```
 
-## 3. Receiving data from the socket
+## 4. Receiving data from the socket
 
 ```
 def on_message(ws, message):
@@ -43,7 +52,7 @@ def on_message(ws, message):
     print(message)
 ```
 
-## 4. Sending audio data to the socket
+## 5. Sending audio data to the socket
 
 The Phebi-Live WebSocket requires wave RIFF audio data with 16k sample rate, 16 bits per sample and 1 audio channel.
 
@@ -64,7 +73,7 @@ def on_open(ws):
     thread.start_new_thread(run, ())
 ```
 
-## 5. Ending the transmission
+## 6. Ending the transmission
 
 When the Live session has ended, we need to tell Phebi-Live that' we're at the end of the file and we need the last final transcription.
 If we close the session now, without sending the EOF message, the final transcription will not be sent to the client.
